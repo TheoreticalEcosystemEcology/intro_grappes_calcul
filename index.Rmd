@@ -1,0 +1,98 @@
+---
+title: "Grappes de calcul"
+author: "Victor Cameron"
+date: "2023"
+output:
+  xaringan::moon_reader:
+    css: [default, pr.css, pr-fonts.css, "hygge", "https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css"]
+    includes:
+      in_header: style-header.html
+    lib_dir: assets
+    seal: false
+    # self_contained: true
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+      ratio: "16:9"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  comment = "#",
+  cache = TRUE,
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 7,
+  fig.height = 5,
+  fig.align = 'center',
+  fig.retina = 3
+)
+
+options(htmltools.dir.version = FALSE)
+
+# base plot layout
+mypar = list(mar = c(3.5,4.5,1,1), mgp = c(1.5, 0.3, 0), bg="transparent", tck = -.008)
+
+# Rscript -e "rmarkdown::render('index.Rmd')"
+# sudo Rscript -e "options(pagedown.remote.maxattempts=40); pagedown::chrome_print("index.html",output="index.pdf")"
+```
+
+class: title-slide, middle
+
+# Premiers pas avec les grappes de calcul
+
+<hr width="65%" align="left" size="0.3" color="#d88219"></hr>
+
+<br>
+
+### Victor Cameron
+
+### Vincent Beauregard
+
+.coleoteal[.small[2023]]
+
+---
+
+# Avant de commencer
+
+## Prérequis
+
+.pull-left[
+- Un compte parainné par Dominique auprès de l'Aliance
+- Un terminal avec un client SSH
+- Windows ?
+]
+
+.pull-right[
+<!-- ![map](assets/img/coleo.png) -->
+]
+
+.cite[[Créer un compte](https://alliancecan.ca/en/services/advanced-research-computing/account-management/apply-account)]
+
+---
+
+# Le modèle client-serveur
+
+
+<br>
+<!-- .center[<img src="assets/img/coleo_workflow.svg"  width="80%">] -->
+
+---
+
+## La connection SSH
+
+Un tunnel SSH permet d’utiliser un ordinateur passerelle pour connecter deux ordinateurs qui ne peuvent pas être connectés directement l’un à l’autre.
+
+```bash
+ssh -Y username@machine_name
+```
+
+
+---
+class: inverse 
+
+# .center[Ressources]
+<html><div style='float:left'></div><hr color='#d88219' size=1px width=720px></html>
