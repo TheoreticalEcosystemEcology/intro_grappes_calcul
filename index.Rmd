@@ -82,7 +82,31 @@ class: title-slide, middle
 
 ---
 
-## La connection SSH
+# Le workflow
+
+## Avant de commencer
+
+- Se connecter à la grappe de calcul
+- Accéder au bon répertoire (/project)
+- Installer R
+- Installer les packages R
+  
+---
+
+# Le workflow
+
+## Soummettre une tâche
+
+1. Se connecter à la grappe de calcul
+2. Transférez les fichiers nécessaires
+3. Tester une tâche avec un environnement interactif (définir les ressources requisess)
+4. Lancer une tâche
+5. Vérifier l'état de la tâche
+6. Récupérer les résultats
+
+---
+
+## 1. La connection SSH
 
 Un tunnel SSH permet d’utiliser un ordinateur passerelle pour connecter deux ordinateurs qui ne peuvent pas être connectés directement l’un à l’autre.
 
@@ -90,6 +114,100 @@ Un tunnel SSH permet d’utiliser un ordinateur passerelle pour connecter deux o
 ssh -Y username@machine_name
 ```
 
+---
+
+# `salloc`
+
+## Tester une tâche avec un environnement interactif
+
+```bash
+salloc --time=00:15:00 --account=def-someuser
+``` 
+
+---
+
+# Soumettre une tâche avec `sbatch`
+
+## Lancer une tâche
+
+Une tâche est lancée avec la soumission d'un script batch
+
+```bash
+sbatch simple_job.sh
+```
+
+---
+
+# Soumettre une tâche avec `sbatch`
+
+# Qui est Slurm ?
+
+## Le script de tâche Slurm
+
+```bash
+#!/bin/bash
+#SBATCH --time=00:15:00
+#SBATCH --account=def-someuser
+echo 'Hello, world!'
+sleep 30
+```
+
+---
+
+# Soumettre une tâche avec `sbatch`
+
+## Le script de tâche Slurm
+
+- Les options Slurm sont précédés de `#SBATCH`
+- Les commandes bash 
+
+```bash
+#!/bin/bash
+#SBATCH --time=00:15:00
+#SBATCH --account=def-someuser
+echo 'Hello, world!'
+sleep 30
+```
+
+---
+
+# Soumettre une tâche avec `sbatch`
+
+## Quoi mettre dans le script de tâche ?
+
+Options Slurm populaires :
+
+- a time limit (`--time`) for each job
+- an account name (`--account`)
+- Required memory (`--mem`)
+- Number of CPUs (`--cpus-per-task`)
+- Les commandes à exécuter
+- Les commandes à exécuter à la fin de la tâche
+- 
+
+.cite[[Slurm tutorial](https://slurm.schedmd.com/sbatch.html)]
+
+---
+
+# Soumettre une tâche avec `sbatch`
+
+## Comment structurer le script R lancé par Slurm ?
+
+---
+
+# Soumettre une tâche avec `sbatch`
+
+## Vérifier l'état de la tâche
+
+```bash
+squeue -u username
+```
+
+---
+
+# Parralléliser une tâche
+
+`SLURM_ARRAY_TASK_ID` : Job array ID (index) number. 
 
 ---
 class: inverse 
