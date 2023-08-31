@@ -1,0 +1,46 @@
+on:
+  push:
+    branches:
+      - master
+
+name: Render slides
+
+jobs:
+  Build_deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+            r-version: '4.2.0'
+
+      - name: Install R dependencies
+        run: make install
+
+      - name: Render slides in html
+        run: make
+
+      - name: Convert slides from html to pdf
+        run: Rscript -e "options(pagedown.remote.maxattempts=40); pagedown::chrome_print("index.html",output="index.pdf")"
+
+      - name: prepare html and pdf files for deployment
+        run: |
+          mkdir slides
+          cp -r ./assets ./slides
+          mkdir -p ./slides
+          cp ./index.html ./slides
+          cp ./index.pdf ./slides
+          cp -r ./assets ./slides
+          if [ -d "./index_files" ]; then cp -r ./index_files ./slides; fi
+          touch ./slides/.nojekyll
+
+      - name: Deploy gh_pages
+        uses: JamesIves/github-pages-deploy-action@v4.4.2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: slides
+          single-commit: true
