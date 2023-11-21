@@ -61,7 +61,7 @@ class: title-slide, middle
 ## Prérequis
 
 .pull-left[
-- Un compte parainné par Dominique auprès de l'Aliance
+- Un compte parainné par Dominique auprès de l'Alliance
 - Un terminal avec un client SSH
 - Windows ?
 ]
