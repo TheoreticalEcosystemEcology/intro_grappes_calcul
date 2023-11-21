@@ -14,7 +14,7 @@ Vincent Beauregard
 
 ## Ressources
 
-[Documentation par l'Aliance](https://docs.alliancecan.ca/wiki/Technical_documentation/fr)
+[Documentation par l'Alliance](https://docs.alliancecan.ca/wiki/Technical_documentation/fr)
 
 
 ## Compiler la présentaion localement
