@@ -205,7 +205,7 @@ squeue -u username
 
 ---
 
-# Parralléliser une tâche
+# Paralléliser une tâche
 
 `SLURM_ARRAY_TASK_ID` : Job array ID (index) number. 
 
