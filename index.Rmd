@@ -27,14 +27,14 @@ knitr::opts_chunk$set(
   message = FALSE,
   fig.width = 7,
   fig.height = 5,
-  fig.align = 'center',
+  fig.align = "center",
   fig.retina = 3
 )
 
 options(htmltools.dir.version = FALSE)
 
 # base plot layout
-mypar = list(mar = c(3.5,4.5,1,1), mgp = c(1.5, 0.3, 0), bg="transparent", tck = -.008)
+mypar <- list(mar = c(3.5, 4.5, 1, 1), mgp = c(1.5, 0.3, 0), bg = "transparent", tck = -.008)
 
 # Rscript -e "rmarkdown::render('index.Rmd')"
 # sudo Rscript -e "options(pagedown.remote.maxattempts=40); pagedown::chrome_print("index.html",output="index.pdf")"
@@ -55,6 +55,34 @@ class: title-slide, middle
 .coleoteal[.small[2023]]
 
 ---
+# Introduction - Concepts de base
+
+.pull-left[
+- Machine virtuelle
+- Modèle client-serveur
+- Connexion ssh
+]
+
+---
+# Introduction
+## Le modèle client-serveur
+
+
+&lt;br&gt;
+&lt;!-- .center[&lt;img src="assets/img/coleo_workflow.svg"  width="80%"&gt;] --&gt;
+
+
+---
+# Introduction
+## Connexion SSH
+
+Un tunnel SSH permet d’utiliser un ordinateur passerelle pour connecter deux ordinateurs qui ne peuvent pas être connectés directement l’un à l’autre.
+
+```bash
+ssh -Y username@machine_name
+```
+
+---
 
 # Avant de commencer
 
@@ -67,18 +95,10 @@ class: title-slide, middle
 ]
 
 .pull-right[
-<!-- ![map](assets/img/coleo.png) -->
+&lt;!-- ![map](assets/img/coleo.png) --&gt;
 ]
 
 .cite[[Créer un compte](https://alliancecan.ca/en/services/advanced-research-computing/account-management/apply-account)]
-
----
-
-# Le modèle client-serveur
-
-
-<br>
-<!-- .center[<img src="assets/img/coleo_workflow.svg"  width="80%">] -->
 
 ---
 
@@ -106,19 +126,9 @@ class: title-slide, middle
 
 ---
 
-## 1. La connection SSH
+# Le workflow
 
-Un tunnel SSH permet d’utiliser un ordinateur passerelle pour connecter deux ordinateurs qui ne peuvent pas être connectés directement l’un à l’autre.
-
-```bash
-ssh -Y username@machine_name
-```
-
----
-
-# `salloc`
-
-## Tester une tâche avec un environnement interactif
+## Tester une tâche avec un environnement interactif - salloc
 
 ```bash
 salloc --time=00:15:00 --account=def-someuser
@@ -126,9 +136,16 @@ salloc --time=00:15:00 --account=def-someuser
 
 ---
 
-# Soumettre une tâche avec `sbatch`
+# Le workflow
 
-## Lancer une tâche
+## Soumettre une tâche avec slurm
+
+Qu'est-ce que Slurm
+
+---
+# Le workflow
+
+## Soumettre une tâche avec slurm - sbatch
 
 Une tâche est lancée avec la soumission d'un script batch
 
@@ -138,9 +155,7 @@ sbatch simple_job.sh
 
 ---
 
-# Soumettre une tâche avec `sbatch`
-
-# Qui est Slurm ?
+# Le workflow
 
 ## Le script de tâche Slurm
 
@@ -154,7 +169,7 @@ sleep 30
 
 ---
 
-# Soumettre une tâche avec `sbatch`
+# Le workflow
 
 ## Le script de tâche Slurm
 
@@ -171,7 +186,7 @@ sleep 30
 
 ---
 
-# Soumettre une tâche avec `sbatch`
+# Le workflow
 
 ## Quoi mettre dans le script de tâche ?
 
@@ -183,19 +198,19 @@ Options Slurm populaires :
 - Number of CPUs (`--cpus-per-task`)
 - Les commandes à exécuter
 - Les commandes à exécuter à la fin de la tâche
-- 
+
 
 .cite[[Slurm tutorial](https://slurm.schedmd.com/sbatch.html)]
 
 ---
 
-# Soumettre une tâche avec `sbatch`
+# Le workflow
 
 ## Comment structurer le script R lancé par Slurm ?
 
 ---
 
-# Soumettre une tâche avec `sbatch`
+# Le workflow
 
 ## Vérifier l'état de la tâche
 
@@ -205,11 +220,24 @@ squeue -u username
 
 ---
 
-# Paralléliser une tâche
+# Le workflow
+
+## Paralléliser une tâche
 
 `SLURM_ARRAY_TASK_ID` : Job array ID (index) number. 
 
 ---
+
+# Le workflow
+
+## Paralléliser une tâche
+
+```bash
+sjobexitmod -l <JOB_ID>
+```
+
+---
+
 class: inverse 
 
 # .center[Ressources]
